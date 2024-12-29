@@ -6,8 +6,7 @@
 @tailwind utilities;
 
 @layer base{
-    .active{
-        color: #EEFF25;
-        background-color: red;
-    }
+   body{
+    font-family: "inter", serif;
+   }
 }

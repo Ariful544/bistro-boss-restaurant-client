@@ -11,3 +11,9 @@
   .carousel .thumb {
     margin: 0 5px; /* Add spacing between thumbnails */
   }
+
+  .swiper-pagination {
+    position: relative;
+    bottom: 0;
+    margin-top: 20px;
+  }

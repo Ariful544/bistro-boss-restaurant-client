@@ -11,22 +11,22 @@ const Slider = () => {
         <div>
             <Carousel showThumbs={true} showArrows={false} showStatus={false}>
                 <div>
-                    <img src={img1} />
+                    <img className="w-full" src={img1} />
                 </div>
                 <div>
-                    <img src={img2} />
+                    <img className="w-full" src={img2} />
                 </div>
                 <div>
-                    <img src={img3} />
+                    <img className="w-full" src={img3} />
                 </div>
                 <div>
-                    <img src={img4} />
+                    <img className="w-full" src={img4} />
                 </div>
                 <div>
-                    <img src={img5} />
+                    <img className="w-full" src={img5} />
                 </div>
                 <div>
-                    <img src={img6} />
+                    <img className="w-full" src={img6} />
                 </div>
             </Carousel>
         </div>
