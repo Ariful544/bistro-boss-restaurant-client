@@ -2,6 +2,7 @@ import React from 'react';
 import Heading from '../../components/Heading';
 import useMenu from '../../Hooks/useMenu';
 import PopularItemCard from '../../shared/PopularItemCard';
+import { Link } from 'react-router-dom';
 
 
 const Salads = () => {
@@ -18,7 +19,9 @@ const Salads = () => {
                 }
             </div>
             <div className='text-center mt-10'>
-                <button className='btn btn-outline mt-4 text-slate-800 uppercase border-0 border-b-4'>ORDER YOUR FAVOURITE FOOD</button>
+                <Link to="/our-shop/salad">
+                    <button className='btn btn-outline mt-4 text-slate-800 uppercase border-0 border-b-4'>ORDER YOUR FAVOURITE FOOD</button>
+                </Link>
             </div>
         </div>
     );

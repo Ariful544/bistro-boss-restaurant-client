@@ -2,11 +2,44 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 const Navbar = () => {
     const navLinks = <>
-        <li className='mr-2 md:text-base text-xs font-bold'><Link to="/" className="hover:text-yellow-500">Home</Link></li>
+        <li className='mr-2 md:text-base text-xs font-bold'>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-yellow-500 bg-none"
+                        : "hover:text-yellow-500"
+                }
+            >
+                Home
+            </NavLink>
+        </li>
         <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">contact us</a></li>
         <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">dashboard</a></li>
-        <li className='mr-2 md:text-base text-xs font-bold'><Link to="/menu" className="hover:text-yellow-500">our menu</Link></li>
-        <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">our shop </a></li>
+        <li className='mr-2 md:text-base text-xs font-bold'>
+            <NavLink
+                to="/menu"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-yellow-500 bg-none"
+                        : "hover:text-yellow-500"
+                }
+            >
+                Our menu
+            </NavLink>
+        </li>
+        <li className='mr-2 md:text-base text-xs font-bold'>
+            <NavLink
+                to="/our-shop"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-yellow-500 bg-none"
+                        : "hover:text-yellow-500"
+                }
+            >
+                Our shop
+            </NavLink>
+        </li>
     </>
     return (
         <div className="navbar fixed z-10  uppercase py-4 md:px-14 px-4 text-white bg-black bg-opacity-50">
