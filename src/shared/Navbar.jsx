@@ -14,7 +14,7 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
-        <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">contact us</a></li>
+        <li className='mr-2 md:text-base text-xs font-bold'><NavLink to="/contact-us" className="hover:text-yellow-500">contact us</NavLink></li>
         <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">dashboard</a></li>
         <li className='mr-2 md:text-base text-xs font-bold'>
             <NavLink
@@ -30,7 +30,7 @@ const Navbar = () => {
         </li>
         <li className='mr-2 md:text-base text-xs font-bold'>
             <NavLink
-                to="/our-shop"
+                to="/our-shop/salad"
                 className={({ isActive }) =>
                     isActive
                         ? "text-yellow-500 bg-none"
