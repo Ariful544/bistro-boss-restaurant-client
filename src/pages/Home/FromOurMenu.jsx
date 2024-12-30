@@ -1,9 +1,12 @@
 import Heading from '../../components/Heading';
 import useMenu from '../../Hooks/useMenu';
-import MenuItemCard from '../../shared/MenuItemCard';
+import PopularItemCard from '../../shared/PopularItemCard';
 
 const FromOurMenu = () => {
-   const [menu] = useMenu();
+   const [menu,loading] = useMenu();
+   if(loading){
+    <span className="loading loading-spinner loading-lg"></span>
+}
    const popularItems = menu?.data?.filter(item => item.category === "popular");
   
     return (
@@ -11,7 +14,7 @@ const FromOurMenu = () => {
             <Heading title="---Check it out---" subTitle="FROM OUR MENU" />
             <div className='grid md:grid-cols-2 grid-cols-1 gap-6'>
                 {
-                    popularItems?.map(menuItem => <MenuItemCard key={menuItem._id} menuItem={menuItem} />)
+                    popularItems?.map(item => <PopularItemCard key={item._id} items={item} />)
                 }
             </div>
             <div className='text-center my-10'>

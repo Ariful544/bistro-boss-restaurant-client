@@ -2,10 +2,10 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 const Navbar = () => {
     const navLinks = <>
-        <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">Home</a></li>
+        <li className='mr-2 md:text-base text-xs font-bold'><Link to="/" className="hover:text-yellow-500">Home</Link></li>
         <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">contact us</a></li>
         <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">dashboard</a></li>
-        <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">our menu</a></li>
+        <li className='mr-2 md:text-base text-xs font-bold'><Link to="/menu" className="hover:text-yellow-500">our menu</Link></li>
         <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">our shop </a></li>
     </>
     return (

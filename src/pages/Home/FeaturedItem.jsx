@@ -9,7 +9,7 @@ const FeaturedItem = () => {
                 backgroundPosition: 'center',
             }}>
             <div className="bg-black absolute inset-0 bg-opacity-50"></div>
-            <div className="relative pt-20 z-10 text-center text-white">
+            <div className="relative pt-20  text-center text-white">
                 <div className='text-center md:w-4/12 w-8/12 mx-auto'>
                     <h2 className='text-yellow-600 italic md:text-xl text-base'>---Check it out---</h2>
                     <p className='md:text-[42px] py-6 border-t-4 mt-4 mb-10 border-b-4 text-white text-2xl'>FROM OUR MENU</p>
