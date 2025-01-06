@@ -7,7 +7,7 @@ import { ImGoogle3 } from 'react-icons/im';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 const Login = () => {
-    const {googleSignIn} = useAuth();
+    const {googleSignIn,signIn} = useAuth();
     const navigate = useNavigate();
     const captcha = useRef(null);
     const [disabled, setDisabled] = useState(true);
@@ -24,9 +24,26 @@ const Login = () => {
             disabled(true)
         }
     }
+    const handleSignIn = async(e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        try{
+            const result = await signIn(email, password);
+            if (result.user) {
+                toast.success("Logged in successful");
+                navigate('/')
+            }
+        }
+        catch(err) {
+            toast.error(err.message)
+        }
+    }
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => {
+                console.log(result.user)
                 toast.success("Sign in with Google successful")
                 navigate("/")
             });
@@ -39,7 +56,7 @@ const Login = () => {
                 </div>
                 <div className='h-full md:ml-10 ml-0 max-w-lg font-semibold'>
                     <h3 className='text-center text-[40px] text-gray-900'>Login</h3>
-                    <form className=''>
+                    <form onSubmit={handleSignIn} className=''>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-gray-700">Email</span>

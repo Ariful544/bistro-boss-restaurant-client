@@ -5,23 +5,42 @@ import { FaFacebook, FaGithub } from 'react-icons/fa';
 import { ImGoogle3 } from 'react-icons/im';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 const SignUp = () => {
-    const { googleSignIn,createUser } = useAuth();
+    const { googleSignIn, createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
-    const handleSignUp = (e)=>{
+    const handleSignUp = async(e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
+        const photoUrl = form.photoUrl.files[0];
+        const formData = new FormData();
+        formData.append("image", photoUrl);
         const email = form.email.value;
         const password = form.password.value;
         const user = {
             name, email, password
         }
-        createUser(email, password)
-        .then(result =>{
+        // image send to imagebb
+        const {data} = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,formData)
+        const displayPhoto = data.data.display_url;
+        try{
+            const result = await createUser(email, password);
+            await updateUserProfile(name, displayPhoto)
             toast.success("User created successfully")
             navigate("/")
-        })
+        } 
+        catch(err){
+            toast.error(err.message);
+        }
+        // createUser(email, password)
+        //     .then(result => {
+        //         updateUserProfile(name, photoUrl)
+        //             .then(result => {
+        //                 toast.success("User created successfully")
+        //                 navigate("/")
+        //             })
+        //     })
     }
     const handleGoogleSignIn = () => {
         googleSignIn()
@@ -41,6 +60,12 @@ const SignUp = () => {
                                 <span className="label-text text-gray-700">Name</span>
                             </label>
                             <input type="text" name='name' placeholder="name" className="input input-bordered rounded-none" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-gray-700">PhotoUrl</span>
+                            </label>
+                            <input type="file" name='photoUrl' required accept='image/*' className="file-input file-input-bordered w-full rounded-none" />
                         </div>
                         <div className="form-control">
                             <label className="label">
