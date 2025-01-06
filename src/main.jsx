@@ -4,11 +4,16 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import routes from './routes/Routes.jsx'
 import { HelmetProvider } from 'react-helmet-async'
+import AuthProvider from './Provider/AuthProvider.jsx'
+import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HelmetProvider>
-      <RouterProvider router={routes} />
-    </HelmetProvider>
+    <AuthProvider>
+      <HelmetProvider>
+        <RouterProvider router={routes} />
+        <ToastContainer position="top-center" closeOnClick={true} />
+      </HelmetProvider>
+    </AuthProvider>
   </StrictMode>,
 )
