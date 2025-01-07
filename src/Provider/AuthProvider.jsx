@@ -13,6 +13,7 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider)
     }
     const updateUserProfile = (name,photoUrl)=>{
+        setLoading(true)
         updateProfile(auth.currentUser,{
             displayName: name,
             photoURL: photoUrl,
@@ -23,9 +24,11 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
       }
     const logout = ()=>{
+        setLoading(true)
         return signOut(auth);
     }
     const createUser = (email,password)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password);
 
     }
@@ -33,6 +36,7 @@ const AuthProvider = ({children}) => {
         googleSignIn,
         user,
         signIn,
+        loading,
         logout,
         createUser,
         updateUserProfile

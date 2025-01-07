@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+
 import img from '../../assets/others/authentication2.png'
 import { Link, useNavigate } from 'react-router-dom';
-import { FaFacebook, FaGithub } from 'react-icons/fa';
-import { ImGoogle3 } from 'react-icons/im';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import SocialLogin from '../../components/SocialLogin';
 const SignUp = () => {
-    const { googleSignIn, createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile } = useAuth();
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate();
     const handleSignUp = async(e) => {
         e.preventDefault();
@@ -19,14 +20,17 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const user = {
-            name, email, password
+            name, email
         }
         // image send to imagebb
         const {data} = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,formData)
         const displayPhoto = data.data.display_url;
+
         try{
             const result = await createUser(email, password);
             await updateUserProfile(name, displayPhoto)
+           
+            await axiosPublic.post('/users',user)
             toast.success("User created successfully")
             navigate("/")
         } 
@@ -42,13 +46,7 @@ const SignUp = () => {
         //             })
         //     })
     }
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(() => {
-                toast.success("Sign in with Google successful")
-                navigate("/")
-            });
-    }
+   
     return (
         <div className="max-w-screen-2xl py-5 min-h-screen bg-[url('/authentication.png')] bg-cover bg-center ">
             <div className="bg-[url('/authentication.png')] gap-6 grid md:grid-cols-2 grid-cols-1  border-t-2 border-l-2 border-gray-400 border-r-8 border-b-8 max-w-screen-xl mx-auto min-h-[700px]">
@@ -86,11 +84,7 @@ const SignUp = () => {
                     <div className='space-y-4 mt-4 text-center'>
                         <p className='text-[#ea9617b3] text-xl'>Already registered? <Link to="/login" className='hover:underline'>Go to log in</Link></p>
                         <p className='text-slate-700 text-lg'>Or sign in with</p>
-                        <div className='flex items-center justify-center gap-6'>
-                            <button onClick={handleGoogleSignIn} title='google' className='text-5xl'><ImGoogle3 /></button>
-                            <button className='text-5xl'><FaFacebook /></button>
-                            <button className='text-5xl'><FaGithub /></button>
-                        </div>
+                       <SocialLogin/>
                     </div>
 
                 </div>
