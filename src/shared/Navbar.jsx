@@ -30,7 +30,7 @@ const Navbar = () => {
             </NavLink>
         </li>
         <li className='mr-2 md:text-base text-xs font-bold'><NavLink to="/contact-us" className="hover:text-yellow-500">contact us</NavLink></li>
-        <li className='mr-2 md:text-base text-xs font-bold'><a className="hover:text-yellow-500">dashboard</a></li>
+        <li className='mr-2 md:text-base text-xs font-bold'><NavLink to="/dashboard" className="hover:text-yellow-500">dashboard</NavLink></li>
         <li className='mr-2 md:text-base text-xs font-bold'>
             <NavLink
                 to="/menu"

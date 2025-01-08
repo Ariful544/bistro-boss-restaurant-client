@@ -7,10 +7,11 @@ import useCart from '../Hooks/useCart';
 import { GiWallet } from 'react-icons/gi';
 import { MdRateReview } from 'react-icons/md';
 import { TbBrandBooking } from 'react-icons/tb';
+import useAdmin from '../Hooks/useAdmin';
 
 const SideBar = () => {
     const [cart] = useCart();
-    const isAdmin = true;
+    const isAdmin = useAdmin();
     return (
         <div>
             <aside className="flex flex-col text-black font-cinzel bg-[#D1A054] w-64 h-full px-4 py-8 overflow-y-auto">
@@ -18,7 +19,7 @@ const SideBar = () => {
                 <p style={{ letterSpacing: "7px" }} className='uppercase text-base'>Restaurant</p>
                 <div className='mt-14 space-y-3 border-b-2 pb-14'>
                     {
-                        isAdmin ? <>
+                        isAdmin[0] ? <>
                             <NavLink className='flex transition hover:text-white items-center gap-2 text-lg uppercase font-medium'><IoHomeSharp />Admin Home</NavLink>
                             <NavLink className='flex transition hover:text-white items-center gap-2 text-lg uppercase font-medium'><FaUtensils />add items</NavLink>
                             <NavLink className='flex transition hover:text-white items-center gap-2 text-lg uppercase font-medium'><FaList />manage items</NavLink>
